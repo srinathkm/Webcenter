@@ -1,4 +1,2 @@
-Srinath Menon
-Srinath Menon
-Srinath Menon
-Srinath Menon
+This is a compilation for all sample RIDC code which are created to work with Oracle Webcenter Content. 
+These can be used as a starting point for integrating external applications with WCC or to build a custom application which would connect to WCC /
