@@ -1,0 +1,17 @@
+[[% Here the dpTriggerValue is set to activate the rule for specific profile %]]
+[[% If this has to be activated for all the profiles / forms then the dpTriggerValue part can be removed. %]]
+<$if IdcService like "CHECKIN_NEW_FORM" and #active.dpTriggerValue like "<your profile's trigger value>"$>
+<$trace("inside if for checkin title","#console")$>
+<$std_checkin_html_head_declarations='
+<$isCheckin=1, useAllVisibleFields = 1, formName = "Checkin",
+                allowsFileUpload = 1, isDocPage = 1$>
+        <$exec inc("std_doc_page_definitions")$>
+        [[% defaultPageTitle generates the value for the title on check-in / search pages. %]]
+        <$defaultPageTitle = "Oracle " & #active.dpDisplayLabel & " " & "Check-In"$>
+        <$include std_html_head_declarations$>
+        <$include load_user_upload_applet_preference$>
+        <$include std_upload_java_script$>
+'$>
+[[% std_checkin_html_head_declarations - This is the dynamic include that generates the new check-in page %]]
+<$setResourceInclude("std_checkin_html_head_declarations", std_checkin_html_head_declarations)$>
+<$endif$>
