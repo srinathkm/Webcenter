@@ -1,0 +1,7 @@
+<$trace("coming from hide query","#console")$>
+<$setResourceInclude("query_page_menus_setup","<$include super.query_page_menus_setup$>  
+ <$loop PageMenusData$>  
+  <$if PageMenusData.nodeId like \"QUERY_BUILDER_FORM\"$>  
+  <$exec rsDeleteRow(\"PageMenusData\")$>  
+  <$endif$>  
+ <$endloop$>")$>
