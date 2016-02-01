@@ -1,0 +1,13 @@
+<$trace("#all","#console")$>
+[[% Logic to force content Item Security group be changed to Folder's security group %]]
+[[% Checking if Folder is selected %]]
+<$if rsExists("ParentInfo")$>
+<$trace("inside core if","#console")$>
+[[% Copying value for document security group set by user %]]
+<$DocSecGrp=#local.dSecurityGroup$>
+[[% Copying value for folder security group if folder value is selected by user %]]
+<$FolderSecGrp=ParentInfo.fSecurityGroup$>
+<$if isFalse(strEquals(DocSecGrp,FolderSecGrp))$>
+<$dprDerivedValue=FolderSecGrp$>
+<$endif$>
+<$endif$>
