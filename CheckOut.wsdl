@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:s0="http://www.stellent.com/CheckOut/"
+	targetNamespace="http://www.stellent.com/CheckOut/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.stellent.com/CheckOut/">
+			<s:element name="CHECKOUT_BY_NAME">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="dDocName" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="dCheckoutUser" type="s:string" />
+						<s:element minOccurs="0" maxOccurs="1" name="extraProps" type="s0:IdcPropertyList" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="CHECKOUT_BY_NAMEResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="CHECKOUT_BY_NAMEResult" type="s0:CHECKOUT_BY_NAMEResult" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:complexType name="CHECKOUT_BY_NAMEResult">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="dAction" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="dActionDate" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="CurRevID" type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1" name="CurRevCheckoutUser" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="LockedContents1" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="unbounded" name="UserAttribInfo" type="s0:UserAttribInfo" />
+					<s:element minOccurs="0" maxOccurs="1" name="latestID" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="RedirectParams" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="StatusInfo" type="s0:StatusInfo" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="UserAttribInfo">
+				<s:sequence>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="StatusInfo">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="statusCode" type="s:int" />
+					<s:element minOccurs="0" maxOccurs="1" name="statusMessage" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="IdcPropertyList">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="unbounded" name="property" type="s0:IdcProperty" />
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="IdcProperty">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="CHECKOUT_BY_NAMESoapIn">
+		<part name="parameters" element="s0:CHECKOUT_BY_NAME" />
+	</message>
+	<message name="CHECKOUT_BY_NAMESoapOut">
+		<part name="parameters" element="s0:CHECKOUT_BY_NAMEResponse" />
+	</message>
+	<portType name="CheckOutSoap">
+		<operation name="CHECKOUT_BY_NAME">
+			<input message="s0:CHECKOUT_BY_NAMESoapIn" />
+			<output message="s0:CHECKOUT_BY_NAMESoapOut" />
+		</operation>
+	</portType>
+	<binding name="CheckOutSoap" type="s0:CheckOutSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+		<operation name="CHECKOUT_BY_NAME">
+			<soap:operation soapAction="http://www.stellent.com/CheckOut/" style="document" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="CheckOut">
+		<port name="CheckOutSoap" binding="s0:CheckOutSoap">
+			<soap:address location="http://ucmhostname:port/_dav/cs/idcplg" />
+		</port>
+	</service>
+</definitions>
