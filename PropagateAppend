@@ -1,0 +1,18 @@
+<$if rsExists("DOC_LIST")$>
+<$trace("IF Append xclbrauserlist","#console")$>
+<$trace("#all","#console")$>
+<$itemType="File"$>
+<$QueryText="fParentGUID LIKE '#local.fFolderGUID'"$>
+<$executeService("FLD_FOLDER_SEARCH")$>
+<$ContentUAL=DOC_INFO.xClbraUserList $>
+<$trace(ContentUAL,"#console")$>
+<$PropUAL=#local.fClbraUserList$>
+<$trace(PropUAL,"#console")$>
+<$if strIndexOf(ContentUAL,"&") >=0$>
+<$trace("Inside if","#console")$>
+<$dprDerivedValue=PropUAL & "," & ContentUAL$>
+<$else$>
+<$trace("Inside else","#console")$>
+<$dprDerivedValue=PropUAL$>
+<$endif$>
+<$endif$>
