@@ -1,0 +1,14 @@
+[[% This part will hide the Email Icon%]]
+<$setResourceInclude("docinfo_menus_setup","<$include super.docinfo_menus_setup$> 
+<$loop PageMenusData$> 
+  <$if PageMenusData.nodeId like \"EMAIL\"$> 
+  <$exec rsDeleteRow(\"PageMenusData\")$> 
+  <$endif$> 
+<$endloop$>")$>
+[[% This part will hide the COntent Actions Icon%]]
+<$setResourceInclude("docinfo_menus_update_setup","<$include super.docinfo_menus_update_setup$> 
+<$loop PageMenusData$> 
+  <$if PageMenusData.nodeId like \"CONTENT_ACTIONS\"$> 
+  <$exec rsDeleteRow(\"PageMenusData\")$> 
+  <$endif$> 
+<$endloop$>")$>
