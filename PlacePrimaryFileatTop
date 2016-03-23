@@ -1,0 +1,51 @@
+<$std_document_checkin_fields='
+<$if isEditMode$><$include std_doc_edit_primary_parameters$><$endif$>
+<$include special_checkin_fields1$>
+<$include std_document_file_fields$>
+<$include std_document_type_field$>
+<$include std_document_type_field_extra$>
+<$include std_document_title_field$>
+<$include author_checkin_field$>
+<$include security_checkin_fields$>
+<$if not noRevLabel$><$include std_namevalue_separator$><$endif$>
+<$suppressCaptionHighlighting = 1$>
+<$include special_checkin_fields2$>
+<$include std_revision_label_field$>
+<$include std_meta_fields$>
+<$include std_doc_date_fields$>
+<$include std_namevalue_separator$>
+<$suppressCaptionHighlighting = ""$>
+'$>
+<$setResourceInclude("std_document_checkin_fields", std_document_checkin_fields)$>
+
+<$std_primary_file='
+<$include std_set_primary_file_field_settings$> 
+<$if allowPrimaryMetaFile$>
+<$allowMetaFile = 1, isRequired = ""$>
+<$checkboxFieldName = "createPrimaryMetaFile", checkboxFieldCaption = lc("wwMetadataOnly"), fieldCheckValue = 1$>
+<$elseif showReuseOriginalNameCheckbox and not isNew$>
+<$allowMetaFile = 1, isRequired = ""$>
+<$checkboxFieldName = "reusePreviousRevisionsOriginalName", checkboxFieldCaption = lc("wwReuseOriginalFile"), fieldCheckValue = 1$>
+<$endif$>
+<$include std_file_upload_row$> 
+'$>
+<$setResourceInclude("std_primary_file", std_primary_file)$>
+
+<$std_file_upload_row = ' 
+<$if allowMetaFile$>
+<$extraFileOptionsInclude = "std_extra_checkbox_option"$>
+<$checkboxValueStyle = "tableEntry"$>
+<$endif$>
+<$if useMultiUpload and not InternalUpload$>
+<$appletInclude = "std_multiupload_applet_definition"$>
+<$include std_applet_field$>
+<$elseif UploadApplet$>
+<$appletInclude = "std_upload_applet_definition"$>
+<$include std_applet_field$>
+<$else$> 
+<$include std_file_field$> 
+<$endif$>
+<$allowMetaFile = ""$>
+<$extraFileOptionsInclude = ""$>
+'$>
+<$setResourceInclude("std_file_upload_row", std_file_upload_row)$>
