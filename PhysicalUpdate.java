@@ -33,8 +33,6 @@ public class PhysicalUpdate {
 			// Create a new IdcClient Connection using idc protocol (i.e. socket connection to Content Server)
 			IdcClient idcClient = manager.createClient ("idc://<urm hostname>:<port>");
 
-                               //for using the web connection - start          
-                                  //  IdcClient idcClient = manager.createClient("http://<urm hostnam>/urm/idcplg/");
                                 IdcContext userContext = new IdcContext("<username>", "<password>");          
                                 //for using web connection - end
                                   
